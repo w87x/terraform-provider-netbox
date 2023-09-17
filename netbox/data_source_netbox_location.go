@@ -42,7 +42,7 @@ func dataSourceNetboxLocation() *schema.Resource {
 			},
 			"site_id": {
 				Type:     schema.TypeInt,
-				Computed: true,
+				Optional: true,
 			},
 		},
 	}
@@ -62,8 +62,12 @@ func dataSourceNetboxLocationRead(d *schema.ResourceData, m interface{}) error {
 	if id, ok := d.Get("id").(string); ok && id != "0" {
 		params.SetID(&id)
 	}
-
+	if site, ok := d.Get("site_id").(int); ok && site != 0 {
+		site_id := fmt.Sprintf("%v", site)
+		params.SetSiteID(&site_id)
+	}
 	res, err := api.Dcim.DcimLocationsList(params, nil)
+
 	if err != nil {
 		return err
 	}
