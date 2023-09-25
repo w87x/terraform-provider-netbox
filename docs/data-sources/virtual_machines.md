@@ -59,6 +59,7 @@ Read-Only:
 - `comments` (String)
 - `config_context` (String)
 - `custom_fields` (Map of String)
+- `description` (String)
 - `device_id` (Number)
 - `device_name` (String)
 - `description` (String)
